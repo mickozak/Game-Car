@@ -24,11 +24,20 @@ var game = {
     drawHp: function () {
         document.getElementById('hp').innerHTML = this.hp;
 
+
         if (this.hp === 0) {
             document.getElementById('hp').parentElement.classList.remove('btn-success');
             document.getElementById('hp').parentElement.classList.add('btn-danger');
-        }
+            var btnRestart = document.createElement('button')
+            contentMain.appendChild(btnRestart)
+            btnRestart.innerText="Restart"
+            btnRestart.classList.add('button-restart')
+            btnRestart.addEventListener('click',function () {
+                    location.reload()
+                })
+            }
     },
+
     calculateCollides: function () {
         this.calculateBombCollide();
         this.calculateScoreCollide();
@@ -63,6 +72,13 @@ var game = {
         this.score += (existingScore - this.scores.length);
         this.drawScore();
     },
+
+    restart: function(){
+        if (this.hp === 0){
+
+        }
+    },
+
     moveLeft: function () {
         if (this.hp > 0) {
             this.car.x = Math.max(0, this.car.x - 15);
@@ -124,6 +140,7 @@ var game = {
             y: 0,
             id: bombId,
             drawBomb: function () {
+
                 document.getElementById('game').insertAdjacentHTML('beforeend', '<div id="' + this.id + '" class="bomb"><i class="fas fa-bomb"></i></div>');
                 this.x = Math.max(0, Math.random() * 300 - this.width);
                 this.y = Math.max(0, Math.random() * 300 - this.height);
@@ -170,30 +187,51 @@ var game = {
     },
 };
 
-var button = document.querySelector(".button-left")
-button.addEventListener('click', function (){game.moveLeft()})
+var buttonTop = document.querySelector(".button-top")
+var buttonLeft = document.querySelector(".button-left")
+var buttonBottom = document.querySelector(".button-bottom")
+var buttonRight = document.querySelector(".button-right")
+buttonTop.addEventListener('click', function (){game.moveUp()})
+buttonRight.addEventListener('click', function (){game.moveRight()})
+buttonBottom.addEventListener('click', function (){game.moveDown()})
+buttonLeft.addEventListener('click', function (){game.moveLeft()})
 
-game.drawScore();
-game.drawHp();
 
-game.generateCar();
-game.generateBombs();
-game.generateScores();
+function init() {
+    game.restart();
+    game.drawScore();
+    game.drawHp();
+    game.generateCar();
+    game.generateBombs();
+    game.generateScores();
 
-setInterval(function () {
-    if (game.bombs.length < 3) {
-        game.generateBomb();
-    }
-}, 2250);
+    setInterval(function () {
+        if (game.bombs.length < 3) {
+            game.generateBomb();
+        }
+    }, 2250);
 
-setInterval(function () {
-    if (game.scores.length < 6) {
-        game.generateScore();
-    }
-}, 1500);
+    setInterval(function () {
+        if (game.scores.length < 6) {
+            game.generateScore();
+        }
+    }, 1500);
+
+
+}
+
+var buttonStart = document.createElement("button")
+var contentMain = document.querySelector(".content-main")
+contentMain.appendChild(buttonStart)
+buttonStart.innerText="START"
+buttonStart.classList.add('button-start')
+
+buttonStart.addEventListener('click',function () {
+  init()
+    contentMain.removeChild(buttonStart)
+})
 
 document.onkeydown = function (e) {
-    console.log(e);
     e = e || window.event;
     switch (e.which || e.keyCode) {
         case 37:
