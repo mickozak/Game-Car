@@ -107,3 +107,8 @@ body {
 .content-main{
     display: flex;
 }
+
+.button-left{
+    position: absolute;
+    top: 500px;
+}
