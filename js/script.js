@@ -30,7 +30,7 @@ var game = {
             document.getElementById('hp').parentElement.classList.add('btn-danger');
             var btnRestart = document.createElement('button')
             contentMain.appendChild(btnRestart)
-            btnRestart.innerText="Restart"
+            btnRestart.innerText="RESTART"
             btnRestart.classList.add('button-restart')
             btnRestart.addEventListener('click',function () {
                     location.reload()
