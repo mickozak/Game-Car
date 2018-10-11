@@ -2,6 +2,11 @@ body {
     background: #34495e;
 }
 
+.content-main{
+    display: flex;
+    justify-content: center;
+}
+
 .viewport {
     position: absolute;
     top: 70px;
@@ -104,11 +109,41 @@ body {
     margin-top: 4px;
 }
 
-.content-main{
-    display: flex;
+.button-container{
+    position: absolute;
+    top: 420px;
 }
 
-.button-left{
+.top{
     position: absolute;
-    top: 500px;
+    top: -30px;
+    left: 34%;
+}
+
+.button-top, .button-left, .button-bottom, .button-right{
+    width: 90px;
+    border-radius: 5px;
+    background-color: #bdc3c7;
+    color: white;
+    border: none;
+}
+
+.button-start{
+    position: absolute;
+    z-index: 99999;
+    top: 205px;
+    border-radius: 5px;
+    background: #bdc3c7;
+    color: white;
+    border: none;
+}
+
+.button-restart{
+    position: absolute;
+    z-index: 99999;
+    top: 205px;
+    border-radius: 5px;
+    background: #bdc3c7;
+    color: white;
+    border: none;
 }
