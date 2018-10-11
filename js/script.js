@@ -170,6 +170,9 @@ var game = {
     },
 };
 
+var button = document.querySelector(".button-left")
+button.addEventListener('click', function (){game.moveLeft()})
+
 game.drawScore();
 game.drawHp();
 
